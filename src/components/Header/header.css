@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&family=Tangerine&display=swap');
+.header_navbar {
+  background-color: #fa6400;
+}
+.header_brand_name {
+  font-size: 5.5rem;
+  font-weight: 700;
+  font-family: 'Tangerine', cursive;
+  font-style: oblique;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-shadow: 2px 0 0 rgb(0, 0, 0), -2px 0 0;
+}
+.social_media_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.social_media {
+  padding-right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.header_collapse_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.callTheWaiter_text {
+  font-size: 2rem;
+}
+.nav-link {
+  display: block;
+  padding: 0rem 0.4rem !important;
+  color: #ffffff;
+}
+.nav-link:hover {
+  color: #ffffff80;
+}

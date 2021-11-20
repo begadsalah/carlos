@@ -1,0 +1,187 @@
+.form-control1 {
+  background-color: rgb(255, 102, 0) !important;
+  color: white !important;
+}
+.lang_main_div {
+  background-color: rgb(255, 255, 255);
+}
+.select_option {
+  color: white !important;
+}
+.osahan-body {
+  background-image: url('https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
+  background-color: transparent !important;
+}
+.slider-wrapper {
+  margin-top: none !important;
+}
+.secondary-slider-wrapper {
+  background-color: transparent !important;
+  display: flex;
+}
+.capital {
+  color: rgb(255, 255, 255) !important;
+  font-size: 2rem !important;
+  text-align: center !important;
+  padding: 2rem 1rem;
+}
+.product-slider {
+  background-color: transparent !important;
+}
+.item-full-bottom-v2 {
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+}
+.item-full-bottom-v2 {
+  color: rgb(0, 0, 0) !important;
+  background-color: #f5f4f4 !important;
+}
+.category-name-top-4,
+.ti {
+  background-color: #f5f4f4 !important;
+  color: rgb(26, 26, 26);
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  text-transform: uppercase;
+  /*border-radius: 0.5em;*/
+}
+.pick_today {
+  /* border-radius: 0.5em;*/
+  color: white !important;
+  /* background-color: #232f3e !important;*/
+  background-color: #f5f4f4 !important;
+}
+.btn-new-v2 {
+  background-color: transparent !important;
+}
+
+.pick_today {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+.pick_today > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+.card-body {
+  color: rgb(17, 17, 17) !important;
+}
+
+.addItem_card {
+  border-radius: 0.6em !important;
+  padding: 1rem;
+  margin: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: rgb(255, 255, 255) !important;
+}
+#category-4 {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.card-title {
+  text-align: center;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  padding-bottom: 1.3rem;
+}
+.addToCart_icon {
+  color: rgb(255, 102, 0) !important;
+  font-size: 3rem !important;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+.addToCart_icon:hover {
+  transform: scale(1.04);
+  filter: brightness(1.2);
+}
+.addToCart_div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.tot_price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #5e5e5e;
+}
+.item_state {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  padding: 0.3rem 0;
+}
+.product-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.product-title-v2 {
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+}
+.recc_product_state {
+  justify-content: space-between;
+}
+.lang_main_div {
+  background-color: rgb(250, 100, 0);
+}
+.fixed-bottom-padding {
+  background-color: #f5f4f4 !important;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .card-body {
+    padding: 0rem !important;
+  }
+  .addItem_card {
+    padding: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  .card-title {
+    font-size: 1.3rem !important;
+    padding-top: 0.5rem;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .card-body {
+    padding: 0rem !important;
+  }
+  .addItem_card {
+    padding: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  .card-title {
+    font-size: 1.3rem !important;
+    padding-top: 0.5rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
