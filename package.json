@@ -1,4 +1,5 @@
 {
+  "homepage": "http://begadsalah.github.io/carlos",
   "name": "carlos",
   "version": "0.1.0",
   "private": true,
@@ -45,6 +46,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -69,6 +72,7 @@
     ]
   },
   "devDependencies": {
-    "case-sensitive-paths-webpack-plugin": "^2.4.0"
+    "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "gh-pages": "^3.2.3"
   }
 }
