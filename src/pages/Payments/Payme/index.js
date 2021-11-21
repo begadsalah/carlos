@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 // import ROUTE from "../../config/route";
 // import domain from '../../config/api/domain';
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { triggerPayment } from "../../../services/payment/actions";
 import * as CONSTANTS from "../../../config/constants/statusCodes";
 import Text from "../../Containers/Text";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CCForm } from "./CCForm";
 
 const Field = ({
@@ -117,9 +117,7 @@ const Payme = (props) => {
       redirect_back_url: window.location.href,
     };
     props.setLoading(true);
-    paymentInfo.gateway == CONSTANTS.PAYME
-      ? dispatch(triggerPayment(data))
-      : null;
+    if (paymentInfo.gateway == CONSTANTS.PAYME) dispatch(triggerPayment(data));
   };
 
   const validateEmail = (email) => {
