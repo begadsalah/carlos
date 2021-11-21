@@ -3,43 +3,45 @@
 /* Email     : ambalavanbasith@gmail.com */
 /* github    : abdulbasitha */
 /* More Info : https://techzia.in */
-import './styles/styles.css'
-import React, { useEffect, useState } from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
-import TitleHeader from '../../components/Header/TitleHeader'
-import { setPaymentInfo } from '../../services/payment/actions'
-import PayStack from './PayStack'
-import RazorPay from './Razorpay'
-import Stripe from './Stripe'
-import Cash from './Cash'
-import PayPal from './Paypal'
+import "./styles/styles.css";
+import React, { useEffect, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
+import TitleHeader from "../../components/Header/TitleHeader";
+import { setPaymentInfo } from "../../services/payment/actions";
+import PayStack from "./PayStack";
+import RazorPay from "./Razorpay";
+import Stripe from "./Stripe";
+import Cash from "./Cash";
+import PayPal from "./Paypal";
 /*import PuffLoader from 'react-spinners/PuffLoader'*/
-import * as CONSTANTS from '../../config/constants/statusCodes'
-import LoadingOverlay from 'react-loading-overlay'
-import Text from '../Containers/Text'
-import MercadoPago from './MercadoPago'
-import ItemHeader from '../../components/item-header'
+import Payme from "./Payme";
+
+import * as CONSTANTS from "../../config/constants/statusCodes";
+import LoadingOverlay from "react-loading-overlay";
+import Text from "../Containers/Text";
+import MercadoPago from "./MercadoPago";
+import ItemHeader from "../../components/item-header";
 
 const Payments = (props) => {
-  const dispatch = useDispatch()
-  const [loading, setLoading] = useState(false)
-  const [payment_method, setPaymentMethod] = useState()
-  const PaymentInfo = useSelector((state) => state.payment.paymentInfo)
-  const UserInfo = useSelector((state) => state.payment.userInfo)
-  const PaymentSettings = useSelector((state) => state.store.payment_settings)
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [payment_method, setPaymentMethod] = useState();
+  const PaymentInfo = useSelector((state) => state.payment.paymentInfo);
+  const UserInfo = useSelector((state) => state.payment.userInfo);
+  const PaymentSettings = useSelector((state) => state.store.payment_settings);
 
   const TriggerPaymentMethod = (payment_method) => {
-    const { store } = props
+    const { store } = props;
     props.setPaymentInfo({
       currency: PaymentSettings.StoreCurrency.toLowerCase(),
       amount: props.data?.total,
       description: store.store_name,
       gateway: payment_method,
-    })
-  }
-  const SuccessTrigger = (payment_method, status = 1, type = 'POPUP') => {
-    props.SuccessAction(payment_method, status, type)
-  }
+    });
+  };
+  const SuccessTrigger = (payment_method, status = 1, type = "POPUP") => {
+    props.SuccessAction(payment_method, status, type);
+  };
 
   return (
     <LoadingOverlay
@@ -48,22 +50,31 @@ const Payments = (props) => {
       styles={{
         overlay: (base) => ({
           ...base,
-          position: 'fixed',
+          position: "fixed",
         }),
       }}
-      text={<Text Key={'processing_order'} />}
+      text={<Text Key={"processing_order"} />}
     >
       <React.Fragment>
-        <div className='osahan-payment'>
+        <div className="osahan-payment">
           <ItemHeader
-            tx={<Text Key={'payment_method'} />}
+            tx={<Text Key={"payment_method"} />}
             onClick={() => window.history.back(-1)}
           />
-          <div className='osahan-payment'></div>
-          <div className='payment p-3'>
-            <div className='accordion' id='accordionExample'>
+          <div className="osahan-payment"></div>
+          <div className="payment p-3">
+            <div className="accordion" id="accordionExample">
               {PaymentSettings?.IsCodEnabled === 1 ? (
                 <Cash
+                  setLoading={setLoading}
+                  onClick={TriggerPaymentMethod}
+                  SuccessAction={SuccessTrigger}
+                  totalAmount={PaymentInfo?.amount}
+                  userData={UserInfo}
+                />
+              ) : null}
+              {PaymentSettings?.IsPayMeEnabled == 1 ? (
+                <Payme
                   setLoading={setLoading}
                   onClick={TriggerPaymentMethod}
                   SuccessAction={SuccessTrigger}
@@ -130,10 +141,10 @@ const Payments = (props) => {
         </div>
       </React.Fragment>
     </LoadingOverlay>
-  )
-}
+  );
+};
 const mapSateToProps = (state) => ({
   store: state.store,
   payment_settings: state.store.payment_settings,
-})
-export default connect(mapSateToProps, { setPaymentInfo })(Payments)
+});
+export default connect(mapSateToProps, { setPaymentInfo })(Payments);
