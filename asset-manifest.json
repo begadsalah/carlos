@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/carlos/static/css/main.13ce3300.chunk.css",
+    "main.js": "/carlos/static/js/main.9c22ba5b.chunk.js",
+    "main.js.map": "/carlos/static/js/main.9c22ba5b.chunk.js.map",
+    "runtime-main.js": "/carlos/static/js/runtime-main.d6148445.js",
+    "runtime-main.js.map": "/carlos/static/js/runtime-main.d6148445.js.map",
+    "static/css/2.fe62fa80.chunk.css": "/carlos/static/css/2.fe62fa80.chunk.css",
+    "static/js/2.73fa9107.chunk.js": "/carlos/static/js/2.73fa9107.chunk.js",
+    "static/js/2.73fa9107.chunk.js.map": "/carlos/static/js/2.73fa9107.chunk.js.map",
+    "index.html": "/carlos/index.html",
+    "precache-manifest.95890aa8e97f8b78042fa14cb91916fc.js": "/carlos/precache-manifest.95890aa8e97f8b78042fa14cb91916fc.js",
+    "service-worker.js": "/carlos/service-worker.js",
+    "static/css/2.fe62fa80.chunk.css.map": "/carlos/static/css/2.fe62fa80.chunk.css.map",
+    "static/css/main.13ce3300.chunk.css.map": "/carlos/static/css/main.13ce3300.chunk.css.map",
+    "static/js/2.73fa9107.chunk.js.LICENSE.txt": "/carlos/static/js/2.73fa9107.chunk.js.LICENSE.txt",
+    "static/media/icofont.min.css": "/carlos/static/media/icofont.f6ab04ae.woff",
+    "static/media/slick-theme.min.css": "/carlos/static/media/slickd41d.ced611da.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6148445.js",
+    "static/css/2.fe62fa80.chunk.css",
+    "static/js/2.73fa9107.chunk.js",
+    "static/css/main.13ce3300.chunk.css",
+    "static/js/main.9c22ba5b.chunk.js"
+  ]
+}
