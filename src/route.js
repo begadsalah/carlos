@@ -1,44 +1,44 @@
-import React from 'react'
-import Loader from './components/Loader/Index'
-import pages from './pages'
-import ROUTE from './config/route'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import React from "react";
+import Loader from "./components/Loader/Index";
+import pages from "./pages";
+import ROUTE from "./config/route";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import {
   fetchTranslation,
   fetchAllTranslation,
-} from './services/languages/actions'
+} from "./services/languages/actions";
 
-import history from './helpers/history'
-import LoadingOverlay from 'react-loading-overlay'
-import ScrollToTop from './components/Helpers/ScrollToTop'
-import domain from './config/api/domain'
+import history from "./helpers/history";
+import LoadingOverlay from "react-loading-overlay";
+import ScrollToTop from "./components/Helpers/ScrollToTop";
+import domain from "./config/api/domain";
 export const Page = (props) => {
   const is_rlt_enable = useSelector(
     (state) => state.translation?.active?.is_rlt
-  )
-  const loading = useSelector((state) => state?.alert?.loader)
-  const active = useSelector((state) => state.translation.active?.is_rlt)
-  const lang_state = useSelector((state) => state.translation)
-  const id = useSelector((state) => state.store.store_id)
-  const dispatch = useDispatch()
+  );
+  const loading = useSelector((state) => state?.alert?.loader);
+  const active = useSelector((state) => state.translation.active?.is_rlt);
+  const lang_state = useSelector((state) => state.translation);
+  const id = useSelector((state) => state.store.store_id);
+  const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(
       fetchAllTranslation({
         view_id: id ? id : domain.storepath,
         lang_state: lang_state,
       })
-    )
+    );
     if (active === 1) {
-      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl')
+      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
     }
     if (active === 0) {
-      document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr')
+      document.getElementsByTagName("html")[0].setAttribute("dir", "ltr");
     }
-  }, [])
+  }, []);
 
-  if (active === undefined) {
-    return <Loader />
+  if (active == undefined) {
+    return <Loader />;
   } else {
     return (
       <LoadingOverlay
@@ -47,14 +47,14 @@ export const Page = (props) => {
         styles={{
           overlay: (base) => ({
             ...base,
-            position: 'fixed',
-            zIndex: '3000',
-            background: 'rgba(255,255,255,0.7)',
+            position: "fixed",
+            zIndex: "3000",
+            background: "rgba(255,255,255,0.7)",
           }),
           spinner: (base) => ({
             ...base,
-            '& svg circle': {
-              stroke: 'rgba(220, 53, 69, 1)',
+            "& svg circle": {
+              stroke: "rgba(220, 53, 69, 1)",
             },
           }),
         }}
@@ -102,6 +102,6 @@ export const Page = (props) => {
           </Switch>
         </Router>
       </LoadingOverlay>
-    )
+    );
   }
-}
+};
