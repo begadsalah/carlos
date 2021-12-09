@@ -16,7 +16,6 @@ export const fetchAllTranslation = postData => dispatch => {
     let id = !view_id.includes("cart/")
         ? view_id
         : view_id.replace("cart/", "");
-    let newId = !id.includes("/") ? id : id.replace("/", "");
     const { languages } = lang_state;
     const stateLang = languages.hasOwnProperty("data") ? languages.data : [];
     dispatch({ type: OPEN_SPLASH });
@@ -27,22 +26,19 @@ export const fetchAllTranslation = postData => dispatch => {
             Accept: "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ view_id: newId })
+        body: JSON.stringify({ view_id: id })
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-
             const arraEqual = arraysEqual(stateLang, data.payload?.data);
             let leng = 0;
-
             for (let index = 0; index < data.payload?.data.length; index++) {
-                if (data.payload?.data[index].id === stateLang[index]?.id) {
+                if (data.payload?.data[index].id == stateLang[index]?.id) {
                     leng++;
                 }
             }
-            if (data.status === "success") {
-                if (arraEqual && leng === data.payload?.data.length) {
+            if (data.status == "success") {
+                if (arraEqual && leng == data.payload?.data.length) {
                 } else {
                     dispatch({
                         type: FETCH_ALL_TRANSLATION,
