@@ -45,8 +45,15 @@ export const Otp = (props) => {
   useEffect(() => {
     setloading(true);
     if (res?.response?.payload?.data) {
-      setloading(false);
-      setotpNumber(res?.response?.payload?.data?.otp);
+      console.log(res?.response);
+      if (res?.response?.success) {
+        setloading(false);
+        setotpNumber(res?.response?.payload?.data?.otp);
+      } else {
+        alert(res?.response?.payload?.data);
+        setloading(false);
+        props.onFailure();
+      }
     }
   }, [res]);
 
@@ -95,6 +102,7 @@ export const Otp = (props) => {
               />
             </div>
             <button
+              disabled={loading}
               onClick={verify}
               className="fixed-bottom align-items-center btn btn-lg btn-block text-white"
               style={{ backgroundColor: "#60B246" }}

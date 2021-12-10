@@ -34,7 +34,7 @@ import {
 } from "../helpers/cart/utility";
 import { findDataById } from "../../../helpers/object";
 
-// import Payments from "../../Payments/index";
+import Payments from "../../Payments/index";
 import PromoCode from "./PromoCode";
 import ApplyCouponRender from "./PromoCode/ApplyCouponRender";
 import ItemHeader from "../../../components/item-header";
@@ -553,17 +553,18 @@ class Cart extends React.Component {
 
     if (this.state.is_completed == "WAIT_FOR_PAYMENT") {
       return (
-        // <Payments
-        //   SuccessAction={this.triggerCreateOrder}
-        //   data={this.state.cart_data}
-        // />
-        <></>
+        <Payments
+          SuccessAction={this.triggerCreateOrder}
+          data={this.state.cart_data}
+        />
+        // <></>
       );
     } else if (this.state.is_completed == "OTP") {
       return (
         <Otp
           phone_number={this.state.phone}
           onSuccess={() => this.setState({ is_completed: "WAIT_FOR_PAYMENT" })}
+          onFailure={() => this.setState({ is_completed: false })}
         />
       );
     } else if (this.state.is_completed == "COMPLETED") {
