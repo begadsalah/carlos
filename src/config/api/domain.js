@@ -1,5 +1,6 @@
 const domain = {
-  url: 'http://autoinstadm.com',
-  storepath: window.location.pathname.replace('/store', ''),
-}
-export default domain
+  // url: window.location.origin,
+  url: "http://localhost:8000",
+  storepath: window.location.pathname.replace("/store/", ""),
+};
+export default domain;
