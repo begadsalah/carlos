@@ -1,82 +1,85 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { ToastProvider, useToasts } from "react-toast-notifications";
-import NotificationSystem from "react-notification-system";
-import Header from "../../components/Header";
-import SideBar from "../../components/SideBar";
-import Tag from "../Containers/Tag";
-import Slider from "../Containers/Slider";
-import OfferTab from "../Containers/OfferTab";
-import ItemCardView from "../Containers/ItemCardView";
-import ItemFullView from "../Containers/ItemFullView";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ToastProvider, useToasts } from 'react-toast-notifications'
+import NotificationSystem from 'react-notification-system'
+import Header from '../../components/Header'
+import SideBar from '../../components/SideBar'
+import Tag from '../Containers/Tag'
+import Slider from '../Containers/Slider'
+import OfferTab from '../Containers/OfferTab'
+import ItemCardView from '../Containers/ItemCardView'
+import ItemFullView from '../Containers/ItemFullView'
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 import {
   fetchStoreItems,
   initial_configuration,
-} from "../../services/store/action";
+} from '../../services/store/action'
 import {
   fetchTranslation,
   fetchAllTranslation,
-} from "../../services/languages/actions";
-import { addToCart, setCart } from "../../services/cart/actions";
-import ROUTE from "../../config/route";
-import FooterBar from "../Containers/FooterBar";
-import Category from "../Containers/Category";
-import Customization from "../Containers/Customization";
-import CallTheWaiter from "../Containers/CallTheWaiter";
-import LanguageSwitcher from "../Containers/LanguageSwitcher";
-import domain from "../../config/api/domain";
-import Text from "../Containers/Text";
-import isRtl from "../../bootstrap";
-let storeId = null;
+} from '../../services/languages/actions'
+import { addToCart, setCart } from '../../services/cart/actions'
+import ROUTE from '../../config/route'
+import FooterBar from '../Containers/FooterBar'
+import Category from '../Containers/Category'
+import Customization from '../Containers/Customization'
+import CallTheWaiter from '../Containers/CallTheWaiter'
+import LanguageSwitcher from '../Containers/LanguageSwitcher'
+import domain from '../../config/api/domain'
+import Text from '../Containers/Text'
+import isRtl from '../../bootstrap'
+import './Store.css'
+import Button from 'react-bootstrap/Button'
+import SearchIcon from '@mui/icons-material/Search'
+let storeId = null
 
 var style = {
   NotificationItem: {
     DefaultStyle: {
-      margin: "10px 5px 2px 1px",
-      background: "#fff",
+      margin: '10px 5px 2px 1px',
+      background: '#fff',
     },
     success: {
-      color: "black",
+      color: 'black',
     },
   },
-};
+}
 
 class Store extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       showCall: false,
-    };
+    }
   }
-  notificationSystem = React.createRef();
+  notificationSystem = React.createRef()
   async fetch() {
-    storeId = this.props.match.params.id;
-    localStorage.setItem("storeId", storeId);
-    let cartData = JSON.parse(localStorage.getItem("cartData"));
+    storeId = this.props.match.params.id
+    localStorage.setItem('storeId', storeId)
+    let cartData = JSON.parse(localStorage.getItem('cartData'))
     let data = {
       view_id: storeId,
-    };
+    }
 
-    this.props.initial_configuration(this.props);
-    this.props.fetchStoreItems(data);
+    this.props.initial_configuration(this.props)
+    this.props.fetchStoreItems(data)
   }
   componentWillMount() {
-    this.fetch();
+    this.fetch()
     if (this.props.translation && this.props.translation?.is_rlt_enable) {
     } else {
-      document.getElementsByTagName("html")[0].setAttribute("dir", "rtl");
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl')
     }
   }
 
   AddToCart = (id, addon = null, extra = null) => {
-    let { translation } = this.props;
-    const notification = this.notificationSystem.current;
+    let { translation } = this.props
+    const notification = this.notificationSystem.current
     notification.addNotification({
-      message: translation?.item_add_to_cart || "Item Added To Cart",
-      level: "success",
-    });
+      message: translation?.item_add_to_cart || 'Item Added To Cart',
+      level: 'success',
+    })
 
     let data = {
       _id: Date.now(),
@@ -85,14 +88,14 @@ class Store extends React.Component {
       count: 1,
       addon: addon,
       extra: extra,
-    };
-    this.props.addToCart(data);
-  };
+    }
+    this.props.addToCart(data)
+  }
 
   onCallBack = () =>
     this.setState((state) => ({
       showCall: !state.showCall,
-    }));
+    }))
   render() {
     let {
       store_name,
@@ -113,19 +116,19 @@ class Store extends React.Component {
       store_theme,
       cities,
       is_rlt_enable,
-    } = this.props;
-    let currency = account_info ? account_info.currency_symbol : "₹";
-    let storecolor = "red";
-    let background = store_theme.appcolor ? store_theme.appcolor : "";
+    } = this.props
+    let currency = account_info ? account_info.currency_symbol : '₹'
+    let storecolor = 'red'
+    let background = store_theme.appcolor ? store_theme.appcolor : ''
 
     return (
       <div
         style={{
           backgroundColor: background,
         }}
-        className="fixed-bottom-padding"
+        className='fixed-bottom-padding'
       >
-        <div className="">
+        <div className=''>
           <Header
             translation={translation}
             logo={logo}
@@ -140,20 +143,20 @@ class Store extends React.Component {
           <NotificationSystem ref={this.notificationSystem} style={style} />
           {this.props.is_language_enable == 1 ? (
             <div
-              className="address p-2 border-bottom"
+              className='address'
               style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-                justifyContent: "space-between",
-                alignContent: "center",
-                alignItems: "center",
-                backgroundColor: background,
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                justifyContent: 'space-between',
+                alignContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgb(250, 100, 0)',
               }}
             >
               <div>
-                <span className="m-0 text-dark d-flex align-items-center">
-                  <span className="small ml-auto">
-                    <a className="font-weight-bold text-decoration-none text-success">
+                <span className='m-0 text-dark d-flex align-items-center'>
+                  <span className='small ml-auto'>
+                    <a className='font-weight-bold text-decoration-none text-success'>
                       <LanguageSwitcher
                         isRtl={is_rlt_enable}
                         all_translation={all_Translation}
@@ -166,46 +169,51 @@ class Store extends React.Component {
                 </span>
               </div>
               <div>
-                <span className="m-0 text-dark d-flex align-items-center">
-                  {" "}
-                  <Text Key={"select_language"} />{" "}
+                <span className='m-0 text-dark d-flex align-items-center'>
+                  {' '}
+                  {/*<Text Key={'select_language'} />{' '}*/}
                 </span>
               </div>
             </div>
           ) : null}
         </div>
-        <br />
         <Slider translation={translation} sliders={sliders} />
-        {this.props.is_search_enable == 1 ? (
-          <div className="col-12 search-col ">
-            <div className="search-mock">
-              <input
-                type="text"
-                id="Search"
-                onKeyUp={() => window.myFunction()}
-                placeholder={
-                  translation?.search_products || "Search for Products.."
-                }
-              />
-              <i
-                style={!is_rlt_enable ? { right: "45px" } : { left: "45px" }}
-                className="icofont-search-2"
-              ></i>
+
+        <div className='osahan-body'>
+          {this.props.is_search_enable == 1 ? (
+            <div className='col-12 search-col '>
+              <div className='search-mock  d-flex'>
+                <input
+                  type='text'
+                  id='Search'
+                  onKeyUp={() => window.myFunction()}
+                  placeholder={
+                    translation?.search_products || 'Search for Products..'
+                  }
+                />
+                <Button className='search-mock_button'>
+                  <SearchIcon />
+                </Button>
+                <i
+                  style={!is_rlt_enable ? { right: '45px' } : { left: '45px' }}
+                  /*className='icofont-search-2'*/
+                >
+                  ADD TO YOUR CART
+                </i>
+              </div>
             </div>
-          </div>
-        ) : null}
-        <div className="osahan-body">
+          ) : null}
           {/*<span className="mb-2 capital"> {translation?.menu_categories||"Categories"}</span>*/}
-          <div className="slider-wrapper secondary-slider-wrapper my-20">
+          <div className='slider-wrapper secondary-slider-wrapper my-20'>
             <Category storeId={storeId} data={this.props?.categories} />
           </div>
-          <div className="title d-flex align-items-center p-3 bg-white">
-            <span className="m-0 capital">
-              {" "}
-              {translation?.menu_recommend || "Recommend for You"}
+          <div className='title d-flex align-items-center p-3'>
+            <span className='m-0 capital'>
+              {' '}
+              {translation?.menu_recommend || 'Recommend for You'}
             </span>
           </div>
-          <div className="product-slider bg-white">
+          <div className='product-slider bg-white'>
             {recommendedItems
               ? recommendedItems.map((data, index) => (
                   <ItemCardView
@@ -233,19 +241,20 @@ class Store extends React.Component {
           style={{
             backgroundColor: background,
           }}
-          className="card item-full-bottom-v2"
+          className='card item-full-bottom-v2'
         >
           {categories
             ? categories.map((category, index) =>
                 categories && category?.product_info?.length ? (
                   <div key={index}>
-                    <div className="ti  tle d-flex align-items-center mt-3 px-3 search">
-                      <h6 className="m-0 category-name-top-4">
-                        {category.name[translation?.language_name]}
+                    <div className='ti  tle d-flex align-items-center mt-3 px-3 search'>
+                      <h6 className='m-0 category-name-top-4'>
+                        {/*{category.name[translation?.language_name]}*/}
+                        ADD TO YOUR CART
                       </h6>
                     </div>
-                    <div className="pick_today">
-                      <div className="">
+                    <div className='pick_today'>
+                      <div className=''>
                         {category?.product_info.map((data, index) => (
                           <ItemFullView
                             key={index}
@@ -281,10 +290,10 @@ class Store extends React.Component {
         />
 
         {this.props.is_accept_order ? (
-          <FooterBar translation={translation} active="home" />
+          <FooterBar translation={translation} active='home' />
         ) : null}
       </div>
-    );
+    )
   }
 }
 
@@ -314,7 +323,7 @@ const mapSateToProps = (state) => ({
   all_Translation: state.translation?.languages,
   active_language_id: state.translation?.active?.id,
   cities: state.store.cities,
-});
+})
 export default connect(mapSateToProps, {
   initial_configuration,
   fetchStoreItems,
@@ -322,4 +331,4 @@ export default connect(mapSateToProps, {
   setCart,
   fetchTranslation,
   fetchAllTranslation,
-})(Store);
+})(Store)
