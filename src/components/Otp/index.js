@@ -7,6 +7,7 @@ import domain from '../../config/api/domain'
 import { useSelector } from 'react-redux'
 import { useFetch } from './test'
 import OTPInput from 'otp-input-react'
+import './style.css'
 
 function generateOTP() {
   var digits = '0123456789'
@@ -77,10 +78,10 @@ export const Otp = (props) => {
       }}
       text={<Text Key={'processing_order'} />}
     >
-      <div className='osahan-body'>
-        <div className='px-15'>
-          <div className='p-3 bg-white border-radius-4px'>
-            Please Enter OTP
+      <div className='osahan-body otp-osahan-body'>
+        <div className=' otp-div-container row'>
+          <div className='p-3 border-radius-4px otp-div col-lg-5 col-md-6 col-sm-10 col-xs-10'>
+            <h3 className='otp-title'>Please enter OTP</h3>
             <div
               className='form-group'
               style={{

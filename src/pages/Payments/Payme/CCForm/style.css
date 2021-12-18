@@ -1,0 +1,50 @@
+.modal-content-background {
+  background-image: linear-gradient(
+    to right,
+    #ff611d 0%,
+    #ffb80e 51%,
+    #813531 100%
+  );
+}
+.modal-content-background {
+  margin: 0px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.3s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 0px;
+  display: block;
+}
+
+.modal-content-background:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.modal-close-button {
+  color: #838383;
+  position: absolute;
+  top: 0;
+  font-size: 2rem;
+  right: 0;
+  padding: 0rem 1rem;
+  cursor: pointer;
+}
+.modal-form {
+  display: contents;
+}
+.total-cost-h1 {
+  color: rgb(145 145 145);
+  align-content: center;
+  text-align: center;
+  padding: 1rem 0rem;
+}
